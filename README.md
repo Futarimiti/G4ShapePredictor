@@ -1,1 +1,1 @@
-# G4TopoSeeker
+# G4ShapePredictor (G4SP)
