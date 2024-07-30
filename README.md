@@ -9,19 +9,22 @@ If you're using Windows OS, the simplest way to install G4ShapePredictor is to d
 2. Unzip G4ShapePredictor.zip
 3. Right click G4ShapePredictor.exe > Run as Administrator
 
-If there are errors, include G4ShapePredictor folder as an exception in Windows Defender, firewall, or any antivirus software you might be using.
+If there are errors, include the G4ShapePredictor folder as an exception in Windows Defender, firewall, or any antivirus software you might be using.
 
 ## Running G4ShapePredictor.py as a python script (Windows OS, MacOS, Linux)
 
 ### WindowsOS
 1. Download and install [Miniconda](https://docs.anaconda.com/miniconda/)
-2. Open Anaconda Prompt from the start menu
-3. 
+2. Download (or clone) this repository. You may download via: https://github.com/donn-liew/G4ShapePredictor > green "Code" button > download ZIP.
+3. Open Anaconda Prompt from the start menu
+4. Run the following command:
+   ```bash
+   conda env create -f path/to/G4ShapePredictor-main/environment.yml
 
 ### MacOS and Linux
 1. Download [Miniconda](https://docs.anaconda.com/miniconda/)
 2. Open a terminal window, navigate to the directory containing the downloaded script, and run it with bash Miniconda3-latest-MacOSX-x86_64.sh (adjust the script name as needed for your OS and version). Follow the on-screen prompts.
-3. Open your regular terminal
+3. Download (or clone) this repository. You may download via: https://github.com/donn-liew/G4ShapePredictor > green "Code" button > download ZIP.
 
 # Supplementary materials
 
