@@ -53,7 +53,8 @@ conda activate github-g4predictor
 ```bash
 python g4sp application code/G4ShapePredictor.py
 ```
-
+<!-- 
 # Supplementary Code
 1. Code is written in Python programming language and is found in g4sp supplementary > G4ShapePredictor_Paper_Supplementary.py
 2. Packed neatly as a class function G4Data
+-->
