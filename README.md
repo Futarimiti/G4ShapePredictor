@@ -1,6 +1,8 @@
 # G4ShapePredictor (G4SP)
 G4ShapePredictor is an application designed to accurately predict DNA G4 folding topologies in potassium (K+) buffer based on putative quadruplex sequences. For a detailed examination of the source code used in the paper, please see section on Supplementary Code.
 
+Liew, D., Lim, Z. W., & Yong, E. H. (2024). Machine learning-based prediction of DNA G-quadruplex folding topology with G4ShapePredictor. Scientific Reports, 14(1), 24238.
+
 # Installation
 ## G4ShapePredictor.exe (Windows OS only)
 If you're using Windows OS, the simplest way to install G4ShapePredictor is to download the .exe file ([Google Drive](https://drive.google.com/file/d/1Cere2jX_zUgypFrG4FWjMmpy0yBjqASH/view?usp=sharing), [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/liew0207_e_ntu_edu_sg/EWva8coMN1ROvsZfTWumbHABUtiK4jk7lWsIOJM-nsM_KQ?e=k1LcmO), [MediaFire](https://www.mediafire.com/file/if9f4d713b4tiew/G4ShapePredictor.zip/file)). The files are hosted on an external site due to GitHub's upload limit.
