@@ -49,12 +49,31 @@
       in
       {
         packages = rec {
-          G4ShapePredictor = throw "TODO: packages.G4ShapePredictor";
-          default = G4ShapePredictor;
+          g4sp =
+            let
+              pythonEnv = python.withPackages (pypkgs: dependenciesFrom pypkgs);
+            in
+            pkgs.stdenv.mkDerivation {
+              pname = "g4sp";
+              version = "1.0.0";
+              src = ./.;
+              buildInputs = [ pythonEnv ];
+              installPhase = ''
+                mkdir -p $out/bin $out/share/g4sp
+                cp -r "g4sp application code" $out/share/g4sp
+                cat > $out/bin/g4sp << EOF
+                #!${pkgs.bash}/bin/bash
+                cd $out/share/g4sp
+                exec ${pythonEnv}/bin/python "g4sp application code/G4ShapePredictor.py"
+                EOF
+                chmod +x $out/bin/g4sp
+              '';
+            };
+          default = g4sp;
         };
         apps = rec {
-          G4ShapePredictor = flake-utils.lib.mkApp { drv = self.packages.${system}.G4ShapePredictor; };
-          default = G4ShapePredictor;
+          g4sp = flake-utils.lib.mkApp { drv = self.packages.${system}.g4sp; };
+          default = g4sp;
         };
         devShells.default = pkgs.mkShell {
           packages = [ (python.withPackages (pypkgs: dependenciesFrom pypkgs ++ [ pypkgs.ipython ])) ];
