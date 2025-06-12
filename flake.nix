@@ -26,6 +26,7 @@
                   sha256 = "sha256-tYcJWaVIS2FPJtMcpMF1JLGwMXUiGZ3JhcO0JW4DB2c=";
                 };
               });
+              catboost = (import nixpkgs { inherit system; }).callPackage ./catboost { };
             })
           ];
         };
@@ -44,7 +45,7 @@
             scikit-learn
             lightgbm
             xgboost
-            # catboost # FIXME no support on darwin
+            catboost # FIXME no support on darwin
           ];
       in
       {
