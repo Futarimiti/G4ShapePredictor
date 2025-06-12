@@ -15,6 +15,7 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
+        python = pkgs.python39;
         python-packages-overlay = self: super: {
           pythonPackagesExtensions = super.pythonPackagesExtensions ++ [
             (pyself: pysuper: {
@@ -26,7 +27,6 @@
                   sha256 = "sha256-tYcJWaVIS2FPJtMcpMF1JLGwMXUiGZ3JhcO0JW4DB2c=";
                 };
               });
-              catboost = (import nixpkgs { inherit system; }).callPackage ./catboost { };
             })
           ];
         };
@@ -34,7 +34,7 @@
           inherit system;
           overlays = [ python-packages-overlay ];
         };
-        python = pkgs.python39;
+        catboost-macosx = import ./catboost-macosx.nix { inherit pkgs; };
         dependenciesFrom =
           pypkgs: with pypkgs; [
             pysimplegui
@@ -45,7 +45,7 @@
             scikit-learn
             lightgbm
             xgboost
-            catboost # FIXME no support on darwin
+            (if pkgs.stdenv.isDarwin then catboost-macosx else pypkgs.catboost)
           ];
       in
       {

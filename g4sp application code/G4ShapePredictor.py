@@ -9,8 +9,7 @@ import sys
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-# FIXME: catboost unspported on darwin
-# from catboost import CatBoostClassifier
+from catboost import CatBoostClassifier
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 #%%
