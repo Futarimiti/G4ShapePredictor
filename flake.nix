@@ -21,7 +21,7 @@
               scikit-learn = pysuper.scikit-learn.overridePythonAttrs (old: rec {
                 version = "1.0.2";
                 src = pysuper.fetchPypi {
-                  pname = old.pname;
+                  inherit (old) pname;
                   inherit version;
                   sha256 = "sha256-tYcJWaVIS2FPJtMcpMF1JLGwMXUiGZ3JhcO0JW4DB2c=";
                 };
@@ -44,7 +44,7 @@
             scikit-learn
             lightgbm
             xgboost
-            # catboost # no support on darwin
+            # catboost # FIXME no support on darwin
           ];
       in
       {
