@@ -15,7 +15,7 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        old-scikit-learn-overlay = self: super: {
+        python-packages-overlay = self: super: {
           pythonPackagesExtensions = super.pythonPackagesExtensions ++ [
             (pyself: pysuper: {
               scikit-learn = pysuper.scikit-learn.overridePythonAttrs (old: rec {
@@ -31,47 +31,33 @@
         };
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ old-scikit-learn-overlay ];
+          overlays = [ python-packages-overlay ];
         };
         python = pkgs.python39;
+        dependenciesFrom =
+          pypkgs: with pypkgs; [
+            pysimplegui
+            tkinter
+            biopython
+            pandas
+            numpy
+            scikit-learn
+            lightgbm
+            xgboost
+            # catboost # no support on darwin
+          ];
       in
       {
-        # packages = rec {
-        #   G4ShapePredictor = python.pkgs.buildPythonApplication {
-        #     pname = "G4ShapePredictor";
-        #     version = "1.0.0";
-        #     pyproject = true;
-        #     propagatedBuildInputs = with python.pkgs; [ setuptools ];
-        #     src = ./.;
-        #   };
-        #   default = G4ShapePredictor;
-        # };
-        # apps = rec {
-        #   {{cookiecutter.package_name}} = flake-utils.lib.mkApp {
-        #     drv = self.packages.${system}.{{cookiecutter.package_name}};
-        #   };
-        #   default = {{cookiecutter.package_name}};
-        # };
-        devShells = {
-          default = pkgs.mkShell {
-            packages = [
-              (python.withPackages (
-                pypkgs: with pypkgs; [
-                  pysimplegui
-                  tkinter
-                  biopython
-                  pandas
-                  numpy
-                  scikit-learn
-                  lightgbm
-                  xgboost
-                  # catboost # broken on darwin
-
-                  ipython
-                ]
-              ))
-            ];
-          };
+        packages = rec {
+          G4ShapePredictor = throw "TODO: packages.G4ShapePredictor";
+          default = G4ShapePredictor;
+        };
+        apps = rec {
+          G4ShapePredictor = flake-utils.lib.mkApp { drv = self.packages.${system}.G4ShapePredictor; };
+          default = G4ShapePredictor;
+        };
+        devShells.default = pkgs.mkShell {
+          packages = [ (python.withPackages (pypkgs: dependenciesFrom pypkgs ++ [ pypkgs.ipython ])) ];
         };
       }
     );
