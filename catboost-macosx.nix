@@ -3,11 +3,9 @@
     url = "https://github.com/NixOS/nixpkgs/archive/refs/heads/release-23.05.tar.gz";
     sha256 = "sha256:0xhqjli4m9wkzv7xhs6fr1iajdjbv7xnj0bwvwldq9s6arlwkhj3";
   }) { },
+  python ? pkgs.python39,
   ...
 }:
-let
-  python = pkgs.python39;
-in
 python.pkgs.buildPythonPackage rec {
   pname = "catboost";
   version = "1.2.5";

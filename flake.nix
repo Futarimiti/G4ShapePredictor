@@ -27,6 +27,7 @@
                   sha256 = "sha256-tYcJWaVIS2FPJtMcpMF1JLGwMXUiGZ3JhcO0JW4DB2c=";
                 };
               });
+              logomaker = import ./logomaker.nix { inherit pkgs python; };
             })
           ];
         };
@@ -34,7 +35,7 @@
           inherit system;
           overlays = [ python-packages-overlay ];
         };
-        catboost-macosx = import ./catboost-macosx.nix { inherit pkgs; };
+        catboost-macosx = import ./catboost-macosx.nix { inherit pkgs python; };
         dependenciesFrom =
           pypkgs: with pypkgs; [
             pysimplegui
@@ -46,6 +47,10 @@
             lightgbm
             xgboost
             (if pkgs.stdenv.isDarwin then catboost-macosx else pypkgs.catboost)
+            logomaker
+            seaborn
+            tqdm
+            openpyxl
           ];
       in
       {
